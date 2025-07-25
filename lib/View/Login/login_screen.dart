@@ -34,22 +34,23 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TextFormField(
-                controller: Controller.emailController,
-                decoration: InputDecoration(
-                  errorText: Controller.emailError.value,
-                  hintText: "Email",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5),
+              Obx(()=> TextFormField(
+                  controller: Controller.emailController,
+                  decoration: InputDecoration(
+                    errorText: Controller.emailError.value,
+                    hintText: "Email",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black, width: 1),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black, width: 1),
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                ),
+                )
               ),
               SizedBox(height: 17),
-              TextFormField(
+              Obx(()=> TextFormField(
                 controller: Controller.passwordController,
                 obscureText: true,
                 decoration: InputDecoration(
@@ -63,8 +64,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     borderRadius: BorderRadius.circular(5),
                   ),
                 ),
-              ),
+              ),),
               SizedBox(height: 40),
+             Obx(()=> Controller.isLoading.value ? CircularProgressIndicator() :
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blueAccent,
@@ -82,6 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
+             ),
             ],
           ),
         ),
